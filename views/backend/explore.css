@@ -1,0 +1,112 @@
+.gradient-background {
+    background: linear-gradient(300deg, rgb(3, 111, 70), rgb(141, 199, 122),rgb(197, 211, 169));
+    background-size: 180% 180%;
+    animation: gradient-animation 18s ease infinite;
+  }
+  
+  @keyframes gradient-animation {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+
+  .container h2{
+    font-weight: 500;
+    color: #284228;
+  }
+  .container .lead{
+    font-weight: 300;
+    color: #284228;
+    
+  }
+  .navbar .btn1{
+    background-color: rgb(51, 104, 51);
+    border: 1px solid #284228;
+    color: #284228;
+    text-decoration: none;
+  }
+  h4{
+    
+    color: #284228;
+  }
+.footer p{
+    color: #284228;
+    margin-bottom: 20px;
+  }
+  .btn{
+    background-color: #284228;
+  }
+
+  .hero{
+    
+    
+    align-items: center;
+    justify-content: center;
+
+  }
+
+  .card{
+    width: 400px;
+    background: #ffffff;
+    padding: 40px;
+    border-radius: 25px;
+    text-align: center;
+    color: #284228;
+
+  }
+
+  .card h1{
+    font-weight: 500;
+    color: #284228;
+  }
+
+  .card img{
+    border-radius: 50%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+
+  .card label{
+    display: block;
+    width: 200px;
+    background: #284228;
+    color: #ffffff;
+    padding: 12px;
+    margin: 10px auto;  
+    border-radius: 5px;
+    cursor: pointer;
+
+  }
+  input{
+    display: none;
+  }
+
+  .card-yield{
+    margin-top: 200px;
+    width: 400px;
+    background: #ffffff;
+    padding: 40px;
+    border-radius: 25px;
+    text-align: center;
+    color: #284228;
+    margin: auto 10px ;
+
+
+  }
+
+  .input-group button {
+    margin-top: 15px; /* Adjust the value to increase/decrease space */
+}
+
+.input-group .form-control{
+  margin-top: 15px;
+}
+  
+
+ 

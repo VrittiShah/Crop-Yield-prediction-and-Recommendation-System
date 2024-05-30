@@ -1,0 +1,156 @@
+*{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+    
+}
+:root{
+    --color-about:#a7bf81;
+}
+body{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+header{
+    height: 138vh;
+    width: 100vw;
+    background-image: url(./Untitled.png);
+
+}
+.container-fluid .navbar-brand{
+    padding-right: 450px;
+}
+.nav-item{
+    justify-content: space-between;
+    padding-right: 70px;
+}
+.btn1{
+    justify-content: end;
+    border-radius: 30px;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+
+
+
+
+
+.btn{
+    color: #ffffff;
+    background: #334D28;
+    font-size: 14px;
+    font-weight: 800;
+    text-transform: uppercase;
+    text-decoration: unset !important;
+    letter-spacing: 1px;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-bottom: 10px;
+    padding-top: 10px;
+    border: 1px solid #284228;
+    position: absolute;
+	border-radius: 16px;
+	bottom: 10px;
+	left: 110px;
+	width: 250px;
+  }
+
+  .explore-btn{
+    text-decoration: none;
+    color:#e4f6f0;
+
+  }
+  .wrapper{
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    min-height: 80vh;
+    background: #ffffff;
+    margin: 70px 30px;
+    width: 100%;
+    
+  }
+  img{
+    max-width: 500px;
+    float: left;
+    margin-right: 30px;
+ 
+
+    
+    
+  }
+  .wrapper .text-box{
+    color: #284228;
+    padding-right: 40px;
+    text-align: left;
+    align-content: end;
+    padding: 40px;
+    margin: 30px;
+
+  }
+  .text-box h2{
+    font-size: 42px;
+    color: #284228;
+    font-weight: 500;
+    
+  }
+  .text-box p{
+    font-size: 20px;
+    color: black;
+    
+    
+    
+  }
+
+
+
+.container{
+    width: 100%;
+    height: 100vh;
+    display: contents;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background-color: #a7bf81;
+    font-weight: 700;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-weight: 300;
+}
+
+.advantages{
+    background-image: url(./whyweuse.png);
+    width: 100%;
+    height: 135vh;
+    margin: 0%;
+
+}
+
+.container .col{
+    background-color: #334517;
+    margin-top: 0%;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    color: #ffffff;
+    
+
+}
+.col h5{
+    color: #ffffff;
+}
+
+
+
+
+@media screen and (max-width: 900px){
+    .nav-links{
+        display: none
+    }
+
+};
+    
+
+

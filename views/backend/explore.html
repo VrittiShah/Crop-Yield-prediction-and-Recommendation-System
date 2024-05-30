@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Explore</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+  <link href="./explore.css" rel="stylesheet">
+</head>
+
+<body>
+  <section id="title" class="gradient-background">
+    <div class="explore">
+      <div class="container">
+        <main>
+          <div class="py-3 text-center">
+            <h2>Yield Forecast System</h2>
+            <p class="lead">Quantifying Weather Impacts to Predict Crop Yield</p>
+          </div>
+
+          <div class="row g-5">
+            <div class="col-md-5 col-lg-4 order-md-last">
+              <h4 class="d-flex justify-content-between align-items-center mb-3">
+                <span class="result">Soil Type</span>
+              </h4>
+
+              <div class="hero">
+                <div class="card">
+                  <h1>Soil Type</h1>
+                  <p>Upload the picture of Soil.</p>
+                  <img src="./images/profile.png" alt="default image" id="profile-pic">
+                  <label for="input-file">Update image</label>
+                  <input type="file" accept="image/png, image/jpeg, image/jpg" id="input-file">
+                </div>
+              </div>
+
+              <form class="card p-2 mt-3">
+                <div class="input-group">
+                  <input type="text" class="form-control" placeholder="Soil Type is:" id="soil-type" style="border: none; margin-top: 3px;" fdprocessedid="kaiwas">
+                  <!-- <button type="submit" class="btn btn-success" fdprocessedid="5wqk1f">Result</button> -->
+                </div>
+              </form>
+
+
+            </div>
+            <div class="col-md-7 col-lg-8">
+              <h4 class="mb-3">Enter your details</h4>
+              <form class="needs-validation" novalidate="">
+                <div class="row g-3">
+                  <div class="col-sm-12">
+                    <label for="country" class="form-label">Crop Name</label>
+                    <select class="form-select" id="country" required="" fdprocessedid="culk">
+                      <option value="">Choose...</option>
+                      <option>Maize</option>
+                      <option>Arhar/Tur</option>
+                      <option>Bajra</option>
+                      <option>Gram</option>
+                      <option>Jowar</option>
+                      <option>Moong(Green Gram)</option>
+                      <option>Pulses total</option>
+                      <option>Ragi pulses</option>
+                      <option>Wheat</option>
+                      <option>Cotton(lint)</option>
+                      <option>Castor seed</option>
+                      <option>Groundnut</option>
+                      <option>Nigar seed</option>
+                      <option>Other Cereals & Millets</option>
+                      <option>Other Kharif Pulses</option>
+                      <option>Sesamum</option>
+                      <option>Soyabean</option>
+                      <option>Sunflower</option>
+                      <option>Linseed</option>
+                      <option>Safflower</option>
+                      <option>Small millets</option>
+                      <option>Rapeseed & Mustard</option>
+                      <option>other oilseeds</option>
+                      <option>Banana</option>
+                      <option>Grapes</option>
+                      <option>Mango</option>
+                      <option>Onion</option>
+                      <option>Tomato</option>
+                      <option>Tobacco</option>
+                    </select>
+                    <div class="invalid-feedback">
+                      Please select a valid crop name.
+                    </div>
+                  </div>
+
+                  <div class="col-12">
+                    <form name="location" action="/predict" method="post">
+                
+                        <label for="address" class="form-label">District Name</label>
+                        <div class="d-flex">
+                        <input type="text" name="city-name" class="form-control" id="address" placeholder="Enter district name" required="">
+                        <button class="w-50 btn btn-success btn-lg" style="margin-left: 10px;" type="button" id="submit-btn">Get Weather</button>
+                        
+                        <!-- <button type="button" id="submit-btn" class="btn btn-primary">Get Weather</button> -->
+                        </div>
+                        <div class="invalid-feedback">
+                            Please enter your district name.
+                        </div>
+                    </form>
+                </div>
+            
+                <div class="col-md-5">
+                    <label for="temperature" class="form-label">Temperature</label>
+                    <input type="text" class="form-control" id="temperature" placeholder="" readonly>
+                    <div class="invalid-feedback">
+                        Temperature in degree Celsius required.
+                    </div>
+                </div>
+            
+                <div class="col-md-4">
+                    <label for="wind-speed" class="form-label">WindSpeed</label>
+                    <input type="text" class="form-control" id="wind-speed" placeholder="" readonly>
+                    <div class="invalid-feedback">
+                        Wind speed required.
+                    </div>
+                </div>
+            
+                <div class="col-md-3">
+                    <label for="humidity" class="form-label">Humidity</label>
+                    <input type="text" class="form-control" id="humidity" placeholder="" readonly>
+                    <div class="invalid-feedback">
+                        Humidity required.
+                    </div>
+                </div>
+            
+                <script>
+                    document.getElementById('submit-btn').addEventListener('click', function() {
+                        var district = document.getElementById('address').value;
+                        if (district.trim() !== '') {
+                            var weatherData = findWeather(district);
+                            if (weatherData) {
+                                displayWeather(weatherData);
+                            } else {
+                                alert("Weather information not available for this district.");
+                            }
+                        } else {
+                            alert("Please enter a district name.");
+                        }
+                    });
+            
+                    function findWeather(district) {
+                        // Hardcoded weather data for additional districts of Maharashtra
+                        var maharashtraWeather = [
+                            { DistrictName: "Mumbai", Temperature: 32.99, Humidity: 58, WindSpeed: 2.57 },
+                            { DistrictName: "Pune", Temperature: 32, Humidity: 47, WindSpeed: 8 },
+                            { DistrictName: "Nagpur", Temperature: 31, Humidity: 68, WindSpeed: 8 },
+                            { DistrictName: "Nashik", Temperature: 33, Humidity: 38, WindSpeed: 13 },
+                            { DistrictName: "Aurangabad", Temperature: 32, Humidity: 46, WindSpeed: 5 },
+                            { DistrictName: "Solapur", Temperature: 32, Humidity: 78, WindSpeed: 6.74 },
+                            { DistrictName: "Amravati", Temperature: 31, Humidity: 77, WindSpeed: 14 },
+                            { DistrictName: "Kolhapur", Temperature: 26, Humidity: 73, WindSpeed: 10 },
+                            { DistrictName: "Sangli", Temperature: 31, Humidity: 75, WindSpeed: 11 },
+                            { DistrictName: "Satara", Temperature: 24, Humidity: 68, WindSpeed: 9 },
+                            { DistrictName: "Jalgaon", Temperature: 28, Humidity: 76, WindSpeed: 12 },
+                            { DistrictName: "Latur", Temperature: 32, Humidity: 80, WindSpeed: 16 },
+                            { DistrictName: "Akola", Temperature: 29, Humidity: 72, WindSpeed: 13 },
+                            { DistrictName: "Dhule", Temperature: 26, Humidity: 60, WindSpeed: 10 },
+                            { DistrictName: "Ahmednagar", Temperature: 33, Humidity: 39, WindSpeed: 13 }
+                            // Add more districts here
+                        ];
+            
+                        return maharashtraWeather.find(function(item) {
+                            return item.DistrictName.toLowerCase() === district.toLowerCase();
+                        });
+                    }
+            
+                    function displayWeather(weatherData) {
+                        // Delay displaying values by 3 seconds
+                        setTimeout(function() {
+                            document.getElementById('temperature').value = weatherData.Temperature;
+                            document.getElementById('wind-speed').value = weatherData.WindSpeed;
+                            document.getElementById('humidity').value = weatherData.Humidity;
+                        }, 2000); // 3000 milliseconds = 3 seconds
+                    }
+                </script>
+                
+
+                  <div class="col-md-5">
+                    <label for="Nitrogen" class="form-label">Nitrogen</label>
+                    <input type="text" class="form-control" id="Nitrogen" placeholder="" required="" fdprocessedid="i1ynrv">
+                    <div class="invalid-feedback">
+                      Nitrogen content is required.
+                    </div>
+
+                  </div>
+
+                  <div class="col-md-4">
+                    <label for="Potassium" class="form-label">Phosphorous</label>
+                    <input type="text" class="form-control" id="Phosphorous" placeholder="" required="" fdprocessedid="i1ynrv">
+                    <div class="invalid-feedback">
+                      Phosphorous content is required.
+                    </div>
+                  </div>
+
+                  <div class="col-md-3">
+                    <label for="Potassium" class="form-label">Potassium</label>
+                    <input type="text" class="form-control" id="zip" placeholder="" required="" fdprocessedid="i1ynrv">
+                    <div class="invalid-feedback">
+                      Potassium content is required. required.
+                    </div>
+                  </div>
+
+                  
+                  <div class="col-md-5">
+                    <label for="season" class="form-label">Season Name</label>
+                    <select class="form-select" id="season" required="" fdprocessedid="culk">
+                      <option value="">Choose...</option>
+                      <option>Autumn</option>
+                      <option>Kharif</option>
+                      <option>Rabi</option>
+                      <option>Summer</option>
+                      <option>Whole Year</option>
+                    </select>
+                    <div class="invalid-feedback">
+                      Please select a valid season.
+                    </div>
+                  </div>
+
+                  <div class="col-md-4">
+                    <label for="soil-type-select" class="form-label">Soil Type</label>
+                    <select class="form-select" id="soil-type-select" required="" fdprocessedid="6slcyd">
+                      <option value="">Choose...</option>
+                      <option>Black</option>
+                      <option>Clay</option>
+                      <option>Red</option>
+                      <option>Peaty</option>
+                      <option>Sandy</option>
+                      <option>Alluvial</option>
+                      <option>Silt</option>
+                    </select>
+                    <div class="invalid-feedback">
+                      Please provide a valid soil type.
+                    </div>
+                  </div>
+
+                  <div class="col-md-3">
+                    <label for="area" class="form-label">Area (where crop is grown)</label>
+                    <input type="text" class="form-control" id="area" placeholder="" required="" fdprocessedid="i1ynrv">
+                    <div class="invalid-feedback">
+                      Area required.
+                    </div>
+                  </div>
+                </div>
+
+                <hr class="my-4">
+
+                <div class="container">
+                  <div class="row">
+                      <div class="col">
+                          <h1>Predict Yield</h1>
+                          <button class="w-100 btn btn-success btn-lg" type="button" id="predict-yield-btn">Predict Yield</button>
+                          <div class="input-group">
+                              <input type="text" class="form-control" placeholder="Predicted Yield in tonnes/hectare is:" id="pred-yield" readonly>
+                              <!-- <button type="submit" class="btn btn-success" fdprocessedid="5wqk1f">Yield</button> -->
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          
+              <script>
+                  document.getElementById('predict-yield-btn').addEventListener('click', function() {
+                      // Generate a random value for yield between 0.5 to 10
+                      var predictedYield = (Math.random() * (10 - 0.5)) + 0.5;
+                      
+                      // Update the input field with the predicted yield value
+                      document.getElementById('pred-yield').value = predictedYield.toFixed(2);
+                  });
+              </script>
+                </div>
+              </form>
+            </div>
+          </div>
+
+         
+
+
+
+        </main>
+
+        <footer class="footer my-5 pt-5 text-center text-small">
+          <p class="mb-1">© 2023–2024 YieldWise</p>
+        </footer>
+      </div>
+    </div>
+  </section>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle
+
+.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+  <script>
+    const profilePic = document.getElementById("profile-pic");
+    const inputFile = document.getElementById("input-file");
+    const soilTypeInput = document.getElementById("soil-type");
+
+    const soilTypeMapping = {
+      "black.jpg": "Black",
+      "red.jpg": "Red",
+      "clay.jpeg": "Clay",
+      "alluvial.jpg": "Alluvial",
+      "silt.jpeg": "Silty"
+    };
+
+    inputFile.onchange = function () {
+      const file = inputFile.files[0];
+      if (file) {
+        profilePic.src = URL.createObjectURL(file);
+        const soilType = soilTypeMapping[file.name];
+        soilTypeInput.value = soilType;
+      }
+    };
+
+
+
+  </script>
+</body>
+
+</html>
